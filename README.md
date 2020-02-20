@@ -13,6 +13,7 @@
 ## Prerequisites
 [Node.js](https://nodejs.org/)
 [Expo-CLI](https://expo.io/learn):
+
 ```
 npm install -g expo-cli
 ```
@@ -23,8 +24,9 @@ This app was developed on MacOS and tested with iOS simulator (iPhone 11) and ph
 
 ## Installing
 Clone or download the repository, and then:
+
 ```
-bash
+
 cd tictactoe
 ```
 
