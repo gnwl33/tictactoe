@@ -1,31 +1,30 @@
-#Tic Tac Toe
+# Tic Tac Toe
 
 ## Demo
 ![](.gif)
 
-##Scope
+## Scope
 * Allow 2 players to play tic tac toe (Follow the rules of tic tac toe)
 * Have 3x3 grid on which the players can play
 * Allow the players to take turns marking spaces on the 3x3 grid
 * Recognize when a player has won and declare that player as victorious
 * Allow the user to start a new game
 
-##Getting Started
-
-###Prerequisites
+## Prerequisites
 [Node.js](https://nodejs.org/)
 [Expo-CLI](https://expo.io/learn):
 ```
 npm install -g expo-cli
 ```
 
-###Recommended Devices
+## Recommended Devices
 This app was developed on MacOS and tested with iOS simulator (iPhone 11) and physical iPhone XR.
 (There are issues with the Modal component when running on a web browser.)
 
-###Installing
+## Installing
 Clone or download the repository, and then:
-```bash
+```
+bash
 cd tictactoe
 ```
 
@@ -34,7 +33,7 @@ To install dependencies:
 npm install
 ```
 
-###Usage
+## Usage
 To run the app:
 ```bash
 expo start
