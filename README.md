@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
 ### Demo
-![](.gif)
+![](tictactoe.gif)
 
 ### Scope
 * Allow 2 players to play tic tac toe (Follow the rules of tic tac toe)
