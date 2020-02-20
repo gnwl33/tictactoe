@@ -21,7 +21,7 @@ npm install -g expo-cli
 ```
 
 ### Recommended Devices
-This app was developed on MacOS and tested with iOS simulator (iPhone 11) and physical iPhone XR.
+This app was developed on MacOS and tested with an iOS simulator (iPhone 11) and a physical iPhone XR. To use on a physical device, download the Expo app.
 (There are issues with React Native's Modal component when running on a web browser.)
 
 ### Installing
@@ -40,3 +40,4 @@ To run the app:
 ```
 expo start
 ```
+Using the Expo Developer Tools, you can run it on an (iOS) simulator or by scanning the QR code with your phone's camera (provided you've downloaded the Expo app).
