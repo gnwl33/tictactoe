@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
 ### Demo
-(GIF is not high quality. App runs much more smoothly)
+(This GIF is not high quality. The app runs much more smoothly.)
 ![](tictactoe.gif)
 
 
