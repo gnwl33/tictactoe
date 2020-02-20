@@ -12,26 +12,24 @@
 
 ## Prerequisites
 [Node.js](https://nodejs.org/)
-[Expo-CLI](https://expo.io/learn):
 
+[Expo-CLI](https://expo.io/learn):
 ```
 npm install -g expo-cli
 ```
 
 ## Recommended Devices
 This app was developed on MacOS and tested with iOS simulator (iPhone 11) and physical iPhone XR.
-(There are issues with the Modal component when running on a web browser.)
+(There are issues with React Native's Modal component when running on a web browser.)
 
 ## Installing
 Clone or download the repository, and then:
-
 ```
-
 cd tictactoe
 ```
 
 To install dependencies:
-```bash
+```
 npm install
 ```
 
