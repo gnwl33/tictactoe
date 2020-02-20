@@ -12,6 +12,7 @@
 * Recognize when a player has won and declare that player as victorious
 * Allow the user to start a new game
 * (Cannot mark cells that have already been marked, and cannot mark cells once a game has ended)
+* (Player 1/"O" always starts)
 
 
 ### Prerequisites
