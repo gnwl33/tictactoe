@@ -16,11 +16,7 @@ const { height } = Dimensions.get("window");
 const App = () => {
   /* * HOOKS * */
   //grid holds 2D array to represent state of game
-  const [grid, setGrid] = useState([
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
-  ]);
+  const [grid, setGrid] = useState([]);
   //size of grid
   const [size, setSize] = useState(3);
   //player keeps track of whose turn it is (1 or 2)
@@ -46,32 +42,34 @@ const App = () => {
     setEnd(0);
   };
 
-  const whoWins = (row, col) => {
-    let len = grid.length;
+  useEffect(() => {
+    //Initialize the game
+    startGame();
+  }, [size]); /* * CALL WHEN SIZE CHANGES * */
 
-    if (grid && len) {
+  const whoWins = (row, col) => {
+    if (grid && size) {
       //If grid has been initialized
-      let rowVal = grid[row][0];
-      let colVal = grid[0][col];
+      let val = grid[row][col];
 
       let rowWin = true,
         colWin = true,
         diagWin1 = true,
         diagWin2 = true;
+
       /* * SCALABLE * */
-      for (let i = 0; i < len; i++) {
-        if (grid[row][i] != rowVal) rowWin = false;
-        if (grid[i][col] != colVal) colWin = false;
+      for (let i = 0; i < size; i++) {
+        if (grid[row][i] != val) rowWin = false;
+        if (grid[i][col] != val) colWin = false;
         if (grid[i][i] != grid[0][0]) diagWin1 = false;
-        if (grid[i][len - 1 - i] != grid[0][len - 1]) diagWin2 = false;
+        if (grid[i][size - 1 - i] != grid[0][size - 1]) diagWin2 = false;
       }
 
-      if (rowWin) return rowVal;
-      if (colWin) return colVal;
+      if (rowWin || colWin) return val;
       if (diagWin1 && grid[0][0] != 0) return grid[0][0];
-      if (diagWin2 && grid[0][len - 1] != 0) return grid[0][len - 1];
+      if (diagWin2 && grid[0][size - 1] != 0) return grid[0][size - 1];
 
-      for (let i = 0; i < len; i++) {
+      for (let i = 0; i < size; i++) {
         //If there are still unselected cells, game is not over
         if (grid[i].includes(0)) return -1;
       }
@@ -80,10 +78,9 @@ const App = () => {
     return -1;
   };
 
-  const markCell = index => {
+  const markCell = (row, col) => {
     if (end) return;
-    let row = index[0];
-    let col = index[1];
+
     let copyGrid = [...grid]; //Create a copy of the array to edit cell with index
     let currPlayer = copyGrid[row][col];
     if (!currPlayer) {
@@ -97,43 +94,54 @@ const App = () => {
       let winner = whoWins(row, col); //Check who is the winner, if there is one
       switch (winner) {
         case 1:
-          setModal(true);
           setWinner("O Wins");
-          setEnd(1);
           break;
         case 2:
-          setModal(true);
           setWinner("X Wins");
-          setEnd(1);
           break;
         case 0:
-          setModal(true);
           setWinner("Draw");
-          setEnd(1);
+      }
+      if (winner != -1) {
+        setModal(true);
+        setEnd(1);
       }
     }
   };
 
-  // useEffect(() => {
-  //   //Initialize the game
-  //   startGame();
-  // });
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      {/* * FOR INPUT * */}
       <View style={styles.container}>
         <View style={styles.square}>
-          {grid.map((row, index) => (
-            <View style={styles.row} key={index}>
-              {row.map((cell, col) => (
-                /* * DYNAMIC SIZE* */
-                <Cell
-                  grid={grid}
-                  mark={markCell}
-                  index={[index, col]} //Corresponds to grid
-                  key={"" + index + col}
-                />
-              ))}
+          {/* * EACH ROW & CELL HAS DYNAMIC SIZE* */}
+          {grid.map((row, rowIdx) => (
+            <View style={styles.row} key={rowIdx}>
+              {row.map((cell, colIdx) => {
+                //To get rid of outside borders
+                let styleVert =
+                  rowIdx == 0
+                    ? styles.top
+                    : rowIdx == grid.length - 1
+                    ? styles.bottom
+                    : {};
+                let styleHor =
+                  colIdx == 0
+                    ? styles.left
+                    : colIdx == grid.length - 1
+                    ? styles.right
+                    : {};
+                return (
+                  <Cell
+                    grid={grid}
+                    mark={markCell}
+                    row={rowIdx}
+                    col={colIdx}
+                    style_={[styleVert, styleHor]}
+                    key={"" + rowIdx + colIdx}
+                  />
+                );
+              })}
             </View>
           ))}
         </View>
@@ -151,8 +159,7 @@ const App = () => {
             let input = event.nativeEvent.text;
             if (!isNaN(input)) {
               input = parseInt(input);
-              setSize(input);
-              // startGame();
+              setSize(input); /* * CHANGE GRID SIZE * */
             }
           }}
         />
@@ -197,7 +204,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   button: {
-    marginTop: 0.05 * height,
+    marginTop: 0.065 * height,
     height: 0.07 * height,
     width: 0.21 * height,
     alignItems: "center",
@@ -222,5 +229,17 @@ const styles = StyleSheet.create({
     fontSize: 45,
     marginBottom: 0.06 * height,
     fontWeight: "bold"
+  },
+  left: {
+    borderLeftWidth: 0
+  },
+  right: {
+    borderRightWidth: 0
+  },
+  top: {
+    borderTopWidth: 0
+  },
+  bottom: {
+    borderBottomWidth: 0
   }
 });

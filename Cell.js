@@ -4,35 +4,31 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 const { height } = Dimensions.get("window");
 
-const Cell = ({ grid, mark, index }) => {
+const Cell = ({ grid, mark, row, col, style_ }) => {
   //Component for grid cells
-  const WhichIcon = index => {
+  const WhichIcon = (row, col) => {
     //Determine whether to render O or X
     let icon;
     let blank = (
       <View style={{ height: 0.125 * height, width: 0.125 * height }} />
     ); //No icon if unselected
+
     if (grid && grid.length) {
       //After grid has been initialized
-      let player = grid[index[0]][index[1]];
+      let player = grid[row][col];
       let O = ( //O mark
-        <Animatable.View animation="bounceIn">
-          {/* Animation */}
-          <MaterialCommunityIcons
-            name="radiobox-blank"
-            size={(0.3 / grid.length) * height}
-            color="#4575EF"
-          />
-        </Animatable.View>
+        <MaterialCommunityIcons
+          name="radiobox-blank"
+          size={(0.3 / grid.length) * height}
+          color="#4575EF"
+        />
       );
       let X = ( //X mark
-        <Animatable.View animation="bounceIn">
-          <MaterialCommunityIcons
-            name="close"
-            size={(0.33 / grid.length) * height}
-            color="#E8488B"
-          />
-        </Animatable.View>
+        <MaterialCommunityIcons
+          name="close"
+          size={(0.33 / grid.length) * height}
+          color="#E8488B"
+        />
       );
 
       icon = player == 1 ? O : player == 2 ? X : blank;
@@ -44,10 +40,12 @@ const Cell = ({ grid, mark, index }) => {
 
   //Cell component returns the following
   return (
-    <View style={styles.cell}>
-      <TouchableOpacity onPress={() => mark(index)}>
+    <View style={[style_, styles.cell]}>
+      <TouchableOpacity onPress={() => mark(row, col)}>
         {/* Call markCell() when pressed given index in grid */}
-        {WhichIcon(index)}
+        <Animatable.View animation="bounceIn">
+          {WhichIcon(row, col)}
+        </Animatable.View>
       </TouchableOpacity>
     </View>
   );
