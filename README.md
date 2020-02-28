@@ -19,14 +19,14 @@
 ### Prerequisites
 [Node.js](https://nodejs.org/)
 
-[Expo-CLI](https://expo.io/learn):
+[Expo CLI](https://expo.io/learn):
 ```
 npm install -g expo-cli
 ```
 
 
 ### Recommended Devices
-This app was developed on MacOS and tested with an iOS simulator (iPhone 11) and a physical iPhone XR. To use on a physical device, download the Expo app.
+This app was developed on macOS and tested with an iOS simulator (iPhone 11) and a physical iPhone XR. To use on a physical device, download the Expo app.
 (There are issues with React Native's Modal component when running on a web browser.)
 
 
@@ -47,4 +47,4 @@ To run the app:
 ```
 expo start
 ```
-Using the Expo Developer Tools, you can run it on an (iOS) simulator or by scanning the QR code with your phone's camera (provided you've downloaded the Expo app).
+Using the Expo Dev Tools, you can run it on an (iOS) simulator or by scanning the QR code with your phone's camera (provided you've downloaded the Expo app).
