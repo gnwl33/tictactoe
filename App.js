@@ -45,7 +45,7 @@ const App = () => {
   useEffect(() => {
     //Initialize the game
     startGame();
-  }, [size]); /* * CALL WHEN SIZE CHANGES * */
+  }, [size]); /* * CALL WHEN SIZE CHANGES, setSize is async * */
 
   const whoWins = (row, col) => {
     if (grid && size) {
