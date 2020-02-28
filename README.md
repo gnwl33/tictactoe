@@ -4,6 +4,10 @@
 (This GIF is not high quality. The app runs much more smoothly.)
 ![](tictactoe.gif)
 
+## Technologies
+* React Native (Expo)
+* Hooks
+* Context
 
 ### Scope
 * Allow 2 players to play tic tac toe
