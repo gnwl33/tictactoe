@@ -4,7 +4,7 @@
 (This GIF is not high quality. The app runs much more smoothly.)
 ![](tictactoe.gif)
 
-## Technologies
+### Technologies
 * React Native (Expo)
 * Hooks
 * Context
