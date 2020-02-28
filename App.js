@@ -113,6 +113,26 @@ const App = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       {/* * FOR INPUT * */}
       <View style={styles.container}>
+        <TextInput
+          placeholder="3"
+          placeholderTextColor="#4575EF"
+          textAlign="center"
+          style={[styles.button, styles.text]}
+          onSubmitEditing={event => {
+            let input = event.nativeEvent.text;
+            if (!isNaN(input)) {
+              input = parseInt(input);
+              setSize(input); /* * CHANGE GRID SIZE * */
+            }
+          }}
+        />
+
+        <TouchableOpacity style={styles.button} onPress={startGame}>
+          {/* Button for starting a new game at any time */}
+          <Text style={styles.text}>New Game</Text>
+        </TouchableOpacity>
+        {/* Button for starting a new game at any time */}
+
         <View style={styles.square}>
           {/* * EACH ROW & CELL HAS DYNAMIC SIZE* */}
           {grid.map((row, rowIdx) => (
@@ -145,24 +165,7 @@ const App = () => {
             </View>
           ))}
         </View>
-        <TouchableOpacity style={styles.button} onPress={startGame}>
-          {/* Button for starting a new game at any time */}
-          <Text style={styles.text}>New Game</Text>
-        </TouchableOpacity>
-        {/* Button for starting a new game at any time */}
-        <TextInput
-          placeholder="3"
-          placeholderTextColor="#4575EF"
-          textAlign="center"
-          style={[styles.button, styles.text]}
-          onSubmitEditing={event => {
-            let input = event.nativeEvent.text;
-            if (!isNaN(input)) {
-              input = parseInt(input);
-              setSize(input); /* * CHANGE GRID SIZE * */
-            }
-          }}
-        />
+
         <Modal
           // Message that pops up to declare winner
           isVisible={modal}
@@ -197,14 +200,16 @@ const styles = StyleSheet.create({
   },
   square: {
     width: 0.387 * height,
-    aspectRatio: 1
+    aspectRatio: 1,
+    marginTop: 0.03 * height,
+    marginBottom: 0.07 * height
   },
   row: {
     flexDirection: "row",
     flex: 1
   },
   button: {
-    marginTop: 0.065 * height,
+    marginBottom: 0.05 * height,
     height: 0.07 * height,
     width: 0.21 * height,
     alignItems: "center",
