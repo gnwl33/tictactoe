@@ -11,6 +11,7 @@
 * Allow the players to take turns marking spaces on the 3x3 grid
 * Recognize when a player has won and declare that player as victorious
 * Allow the user to start a new game
+* Scalabe: Can change the size of the grid
 * (Cannot mark cells that have already been marked, and cannot mark cells once a game has ended)
 * (Player 1/"O" always starts)
 
