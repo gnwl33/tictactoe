@@ -9,26 +9,37 @@ const Cell = ({ grid, mark, row, col, style_ }) => {
   const WhichIcon = (row, col) => {
     //Determine whether to render O or X
     let icon;
-    let blank = (
-      <View style={{ height: 0.125 * height, width: 0.125 * height }} />
+    let blank /* * DYNAMIC SIZE * */ = (
+      <View
+        style={{
+          height: (0.375 / grid.length) * height,
+          width: (0.375 / grid.length) * height
+        }}
+      />
     ); //No icon if unselected
 
     if (grid && grid.length) {
       //After grid has been initialized
       let player = grid[row][col];
+
       let O = ( //O mark
-        <MaterialCommunityIcons
-          name="radiobox-blank"
-          size={(0.3 / grid.length) * height}
-          color="#4575EF"
-        />
+        <Animatable.View animation="bounceIn">
+          <MaterialCommunityIcons
+            name="radiobox-blank"
+            size={(0.3 / grid.length) * height}
+            color="#4575EF"
+          />
+        </Animatable.View>
       );
+
       let X = ( //X mark
-        <MaterialCommunityIcons
-          name="close"
-          size={(0.33 / grid.length) * height}
-          color="#E8488B"
-        />
+        <Animatable.View animation="bounceIn">
+          <MaterialCommunityIcons
+            name="close"
+            size={(0.33 / grid.length) * height}
+            color="#E8488B"
+          />
+        </Animatable.View>
       );
 
       icon = player == 1 ? O : player == 2 ? X : blank;
@@ -43,9 +54,7 @@ const Cell = ({ grid, mark, row, col, style_ }) => {
     <View style={[style_, styles.cell]}>
       <TouchableOpacity onPress={() => mark(row, col)}>
         {/* Call markCell() when pressed given index in grid */}
-        <Animatable.View animation="bounceIn">
-          {WhichIcon(row, col)}
-        </Animatable.View>
+        {WhichIcon(row, col)}
       </TouchableOpacity>
     </View>
   );
