@@ -1,4 +1,4 @@
-# Tic Tac Toe
+# Tic-Tac-Toe
 
 ### Demo
 (This GIF is not high quality. The app runs much more smoothly.)
