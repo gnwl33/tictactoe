@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Dimensions, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
+import MyContext from "./MyContext";
 const { height } = Dimensions.get("window");
 
-const Cell = ({ grid, mark, row, col, style_ }) => {
+const Cell = () => {
   //Component for grid cells
+
+  const { grid, mark, row, col, style_ } = useContext(MyContext);
+
   const WhichIcon = (row, col) => {
     //Determine whether to render O or X
     let icon;

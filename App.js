@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import Cell from "./Cell"; /* * IMPORT * */
+import MyContext from "./MyContext"; //Testing out Context
 const { height } = Dimensions.get("window");
 
 const App = () => {
@@ -152,14 +153,19 @@ const App = () => {
                     ? styles.right
                     : {};
                 return (
-                  <Cell
-                    grid={grid}
-                    mark={markCell}
-                    row={rowIdx}
-                    col={colIdx}
-                    style_={[styleVert, styleHor]}
+                  <MyContext.Provider
+                    value={{
+                      grid: grid,
+                      mark: markCell,
+                      row: rowIdx,
+                      col: colIdx,
+                      style_: [styleVert, styleHor]
+                    }}
                     key={"" + rowIdx + colIdx}
-                  />
+                  >
+                    {/* Just testing out Context */}
+                    <Cell />
+                  </MyContext.Provider>
                 );
               })}
             </View>
